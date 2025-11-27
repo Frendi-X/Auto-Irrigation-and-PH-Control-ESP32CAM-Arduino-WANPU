@@ -42,11 +42,11 @@
     #1?     → request status tanah + pH + nilai
 
 ## 📱 Command Telegram
-  Perintah	Fungsi
-  /start	menampilkan menu
-  /photo	ambil foto dari ESP32-CAM
-  /status	kirim status tanah & pH
-  /help	menampilkan bantuan
+Perintah	Fungsi
+- /start	menampilkan menu
+- /photo	ambil foto dari ESP32-CAM
+- /status	kirim status tanah & pH
+- /help	menampilkan bantuan
 
 
 
