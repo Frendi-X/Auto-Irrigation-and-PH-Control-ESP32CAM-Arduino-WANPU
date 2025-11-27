@@ -1,6 +1,6 @@
-# Sistem Monitoring & Kontrol Kelembaban Tanah & pH + ESP32-CAM Telegram Bot
-  Proyek ini merupakan integrasi antara Arduino (ATMega/Uno/Nano/Mega) sebagai sistem kontrol utama dan ESP32-CAM sebagai modul pemantauan visual serta pengirim notifikasi ke Telegram bot. Sistem ini mampu:
-
+# Auto-Irrigation-and-PH-Control-ESP32CAM-Arduino-WANPU
+  Proyek ini merupakan integrasi antara Arduino (ATMega/Uno/Nano/Mega) sebagai sistem kontrol utama dan ESP32-CAM sebagai modul pemantauan visual serta pengirim notifikasi ke Telegram bot. [OMI - MAN 1 Ponorogo]
+  
 ## 📡 Fitur Utama Sistem
 ### 🟢 Modul Arduino
     - Pembacaan:
