@@ -8,9 +8,7 @@
 # 🧩 Fitur Utama Sistem
 
 ## 🔹 Sistem Kontrol Berbasis Arduino
-
 Arduino bertugas sebagai pusat pengendali fisik:
-
 * Membaca seluruh sensor (pH, moisture, PIR).
 * Mengolah nilai ADC menjadi kategori status.
 * Mengaktifkan pompa berdasarkan status tanah.
@@ -20,28 +18,23 @@ Arduino bertugas sebagai pusat pengendali fisik:
 * Mengirim data ke ESP32-CAM secara rutin (interval 300–800 ms).
 
 ### Struktur logika Arduino:
-
 1. **Pembacaan Sensor**
-
    * Soil moisture: analog (0–1023)
    * Sensor DMS pH: analog → dikonversi ke angka pH
    * PIR: HIGH/LOW
 2. **Penentuan Status**
    **Kelembaban:**
-
    * Basah → moisture > 800
    * Normal → 450–800
    * Kering → < 450
 
    **pH:**
-
    * Asam → pH < 6
    * Normal → 6–7.5
    * Basa → >7.5
 3. **Kontrol Pompa**
    Sesuai kategori yang dihitung.
 4. **Pengendalian Alarm PIR**
-
    * Servo bergerak kiri-kanan 2x
    * Buzzer beep 2x
 5. **Pengiriman Data Serial ke ESP32-CAM**
@@ -51,11 +44,9 @@ Arduino bertugas sebagai pusat pengendali fisik:
 ---
 
 # 📸 Sistem ESP32-CAM + Telegram Bot
-
 ESP32-CAM berfungsi sebagai sistem monitoring IoT dan antarmuka pengguna.
 
 ## Tugas utama ESP32-CAM:
-
 * Menghubungkan ke WiFi.
 * Menjalankan **Telegram Bot API**.
 * Menerima data dari Arduino & menyimpannya sebagai variabel global.
@@ -64,7 +55,6 @@ ESP32-CAM berfungsi sebagai sistem monitoring IoT dan antarmuka pengguna.
 * Menerima data realtime dari Arduino untuk notifikasi otomatis (opsional).
 
 ### Perintah Telegram:
-
 | Perintah  | Fungsi                                                           |
 | --------- | ---------------------------------------------------------------- |
 | `/start`  | Menampilkan menu awal                                            |
@@ -74,11 +64,8 @@ ESP32-CAM berfungsi sebagai sistem monitoring IoT dan antarmuka pengguna.
 ---
 
 # 🔗 Mekanisme Komunikasi Arduino ↔ ESP32-CAM
-
 ## Protokol komunikasi dibuat **singkat, tidak ambigu, dan low-latency**.
-
 ### ➤ Format Request dari ESP → Arduino
-
 ESP meminta paket data menggunakan format:
 
 ```
@@ -88,7 +75,6 @@ ESP meminta paket data menggunakan format:
 Artinya: kirim semua status.
 
 ### ➤ Format Data dari Arduino → ESP32
-
 Arduino mengirim 4 kategori data:
 
 #### 1. Status Kelembaban Tanah
@@ -169,7 +155,7 @@ Gunakan **level shifter 5V → 3.3V** atau resistor divider pada jalur TX Arduin
 
 # 🧠 Alur Kerja Sistem (Flow System)
 
-## 💧 A. Alur Monitoring Tanah (Arduino)
+## 💧 Alur Monitoring Tanah (Arduino)
 
 1. Arduino membaca soil moisture.
 2. Konversi nilai menjadi kategori.
@@ -178,7 +164,7 @@ Gunakan **level shifter 5V → 3.3V** atau resistor divider pada jalur TX Arduin
 5. Jika “Kering” → Pompa Air ON
 6. Jika “Basah/Normal” → Pompa Air OFF
 
-## ⚗ B. Alur Kontrol pH (Arduino)
+## ⚗ Alur Kontrol pH (Arduino)
 
 1. Arduino membaca nilai analog pH.
 2. Konversi ke bentuk pH aktual.
@@ -189,7 +175,7 @@ Gunakan **level shifter 5V → 3.3V** atau resistor divider pada jalur TX Arduin
    * Normal → kedua pompa OFF
 4. Kirim status + nilai numerik ke ESP.
 
-## 👁‍🗨 C. Alur Kamera (ESP32-CAM)
+## 👁‍🗨 Alur Kamera (ESP32-CAM)
 
 1. Menunggu perintah via Telegram.
 2. Jika `/photo`:
@@ -199,7 +185,7 @@ Gunakan **level shifter 5V → 3.3V** atau resistor divider pada jalur TX Arduin
 
    * Susun data dari Arduino → kirim format teks lengkap.
 
-## 🔒 D. Alur Keamanan PIR
+## 🔒 Alur Keamanan PIR
 
 1. PIR mendeteksi gerakan.
 2. Servo bergerak 0° → 180° → 0°.
@@ -221,7 +207,7 @@ Format pesan Telegram dapat berupa teks + foto.
 
 ---
 
-# 8. 📊 Format Status Telegram
+# 📊 Format Status Telegram
 
 Contoh output `/status`:
 
@@ -241,7 +227,6 @@ Contoh output `/status`:
 ---
 
 # 📌 Kelebihan Sistem
-
 * Realtime, akurat, dan stabil.
 * Hemat daya & cocok untuk greenhouse atau pertanian otomatis.
 * Protokol serial anti-error.
@@ -250,7 +235,6 @@ Contoh output `/status`:
 ---
 
 # 📦 Pengembangan Lanjutan yang Direkomendasikan
-
 * Menambah fitur **Auto-Fertilizer Pump**.
 * Mengirim grafik 24 jam ke Telegram.
 * Menambah datalogger ke SD Card (ESP32-CAM).
@@ -259,7 +243,13 @@ Contoh output `/status`:
 
 ---
 
-# 📝 Kesimpulan
+ ## 📧 **Contacs us :** 
+* [Frendi RoboTech](https://www.instagram.com/frendi.co/)
+* [Whatsapp : +6287888227410](https://wa.me/+6287888227410)
+* [Email    : frendirobotech@gmail.com](https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=frendirobotech@gmail.com) atau [Email    : frendix45@gmail.com](https://mail.google.com/mail/u/0/?view=cm&tf=1&fs=1&to=frendix45@gmail.com)
 
-Dokumen ini memuat penjelasan teknis lengkap mengenai cara kerja sistem monitoring & kontrol tanah yang menggabungkan Arduino dan ESP32-CAM berbasis Telegram Bot. Sistem dirancang agar stabil, mudah dikembangkan, dan efisien untuk pertanian modern atau penelitian.
+---
 
+## 👨‍💻 **Author**
+Dikembangkan oleh: Imam Sa'id Nurfrendi [Reog Robotic & Robotech Electronics]  
+Lisensi: Open Source (MIT)
